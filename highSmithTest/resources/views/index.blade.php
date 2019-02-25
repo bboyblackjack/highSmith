@@ -185,6 +185,7 @@
                 <th>Название</th>
                 <th>Цена</th>
                 <th>Автор</th>
+                <th>Опубликовано</th>
                 <th></th>
             </tr>
             </thead>
@@ -195,6 +196,7 @@
                             <td>{{$b->name}}</td>
                             <td>{{$b->price}}</td>
                             <td data-id="{{$b->author->id}}">{{$b->author->firstname." ".$b->author->middlename." ".$b->author->lastname}}</td>
+                            <td>{{$b->created_at}}</td>
                             <td><a href="#" class="book_id" data-id="{{$b->id}}" data-toggle="modal" data-target="#edit_book">Редактировать</a></td>
                         </tr>
                     @endforeach
@@ -325,8 +327,11 @@
                         "<td>" + e.name + "</td>" +
                         "<td>" + e.price + "</td>" +
                         "<td>" + e.author.firstname + " " + e.author.middlename + " " + e.author.lastname + "</td>" +
+                        "<td>"+ (e.created_at.date).split(' ')[0] +"</td>" +
                         '<td><a href="#" class="book_id" data-id="'+ e.id+'" data-toggle="modal" data-target="#edit_book">Редактировать</a></td>'+
                         "</tr>";
+                console.log(e.created_at);
+                console.log(e);
                 $('#books table tbody tr:last').after(element);
 
                 var count = parseInt($('.author_id[data-id='+ e.author.id+']').parents('tr').find('td:nth-child(4)').text()) + 1;
